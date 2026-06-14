@@ -1,0 +1,260 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import ThemePanel from '../components/ThemePanel.astro';
+import Footer from '../components/Footer.astro';
+import { User, MapPin, Mail, Phone, Linkedin, Github, ExternalLink, GraduationCap, Briefcase } from 'lucide-astro';
+
+const projects = [
+  {
+    name: "NavTour",
+    description: "Projeto de startup no setor de turismo focado em melhorar a experiência de navegação para turistas.",
+    tech: ["Flutter", "Dart", "Firebase"],
+    github: "https://github.com/",
+    gradient: "from-blue-500/20 to-indigo-500/20"
+  },
+  {
+    name: "TechGreen",
+    description: "Projeto acadêmico piloto de um E-commerce com tema ambientalista.",
+    tech: ["Node.js", "Express", "MongoDB"],
+    github: "https://github.com/d3vluz/TechGreen",
+    gradient: "from-emerald-500/20 to-teal-500/20"
+  },
+  {
+    name: "Portfólio de Desenvolvimento Web",
+    description: "Coleção de projetos de desenvolvimento web mostrando habilidades em HTML, CSS e JavaScript.",
+    tech: ["HTML5", "CSS", "JavaScript"],
+    github: "https://github.com/levi-tabosa/levi-tabosa.github.io",
+    gradient: "from-violet-500/20 to-purple-500/20"
+  }
+];
+---
+
+<BaseLayout title="Levi Tabosa Costa e Silva - Portfólio">
+  
+  <!-- Navigation Header -->
+  <Header />
+
+  <!-- Hero Section -->
+  <section
+    id="home"
+    class="relative min-h-[85vh] flex items-center justify-center pt-20 overflow-hidden bg-gradient-to-br from-gh-accent/10 to-gh-accent/5 dark:from-[#0f172a] dark:to-[#1e293b] transition-all duration-300"
+  >
+    <div class="max-w-4xl mx-auto px-6 text-center z-10 space-y-6">
+      <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900 dark:text-white leading-tight animate-fade-in">
+        Desenvolvedor web · Engenheiro de software
+      </h1>
+      <p class="text-lg md:text-xl text-gray-600 dark:text-slate-400 font-medium max-w-2xl mx-auto animate-fade-in">
+        Estudante de Ciência da Computação e Entusiasta de Startups
+      </p>
+      <div class="pt-4 animate-fade-in">
+        <a
+          href="#about"
+          class="inline-block px-8 py-3 bg-gh-accent hover:bg-gh-accent-hover text-white rounded-md uppercase font-semibold text-xs tracking-wider shadow-md hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 transition-all duration-150 cursor-pointer"
+        >
+          Entre em Contato
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-24 bg-white dark:bg-[#0f172a] border-b border-gray-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-16 after:h-1 after:bg-gh-accent">
+        Sobre Mim
+      </h2>
+      
+      <div class="flex flex-col md:flex-row items-center gap-12 pt-4">
+        <!-- Profile Pic -->
+        <div class="flex-shrink-0 w-64 h-64 md:w-80 md:h-80 relative group">
+          <img
+            src="/images/pic.png"
+            alt="Levi Tabosa"
+            class="w-full h-full object-cover rounded-2xl shadow-md border border-gray-100 dark:border-slate-800 transition-all duration-300 group-hover:scale-[1.02] group-hover:shadow-lg"
+          />
+          <div class="absolute inset-0 rounded-2xl border-2 border-transparent group-hover:border-gh-accent/20 transition-all duration-300 pointer-events-none"></div>
+        </div>
+
+        <!-- Bio & Contact Info -->
+        <div class="flex-grow space-y-6">
+          <div class="space-y-4 text-base text-gray-600 dark:text-slate-400 leading-relaxed font-medium">
+            <p>
+              Estudante empenhado de Ciência da Computação na UNIFOR, com vivência em projetos de startups, particularmente na área de turismo.
+            </p>
+            <p>
+              Tenho competência para comunicar e colaborar, sempre comprometido com a qualidade no desenvolvimento de software.
+            </p>
+          </div>
+
+          <!-- Contact Details -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-4 border-t border-gray-100 dark:border-slate-800 text-sm text-gray-700 dark:text-slate-300">
+            <div class="flex items-center space-x-3">
+              <User class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <span><strong>Nome:</strong> Levi Tabosa Costa e Silva</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <MapPin class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <span><strong>Localização:</strong> Fortaleza, Ceará</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Mail class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <a href="mailto:tabosalevicosta@gmail.com" class="hover:text-gh-accent hover:underline break-all">
+                tabosalevicosta@gmail.com
+              </a>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Phone class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <span><strong>Celular:</strong> +55 (85) 99702-2568</span>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Linkedin class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <a href="https://linkedin.com/in/tabosa-levi" target="_blank" rel="noopener noreferrer" class="hover:text-gh-accent hover:underline">
+                linkedin.com/in/tabosa-levi
+              </a>
+            </div>
+            <div class="flex items-center space-x-3">
+              <Github class="w-4.5 h-4.5 text-gh-accent flex-shrink-0" />
+              <a href="https://github.com/levi-tabosa" target="_blank" rel="noopener noreferrer" class="hover:text-gh-accent hover:underline">
+                github.com/levi-tabosa
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience & Education Section -->
+  <section id="experience" class="py-24 bg-gray-50 dark:bg-[#161b22] border-b border-gray-100 dark:border-slate-800 transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-6">
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
+        
+        <!-- Experience Column -->
+        <div class="space-y-10">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-10 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-16 after:h-1 after:bg-gh-accent">
+            Experiência
+          </h2>
+
+          <div class="relative pl-6 border-l-2 border-gh-accent/30 space-y-12">
+            <!-- Timeline Item -->
+            <div class="relative group">
+              <!-- Timeline Dot -->
+              <div class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-gh-accent border-4 border-gray-50 dark:border-[#161b22] group-hover:scale-110 transition-transform duration-200"></div>
+              
+              <div class="space-y-2">
+                <span class="text-xs font-semibold text-gh-text-muted bg-gray-200/60 dark:bg-slate-800/80 px-2.5 py-0.5 rounded-full">
+                  Agosto 2023 - Março 2024
+                </span>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white pt-1">
+                  Participante de Projeto de Startup - NavTour
+                </h3>
+                <div class="text-sm text-gray-600 dark:text-slate-400 space-y-2 leading-relaxed">
+                  <p>
+                    Participação ativa em um projeto de startup no setor de turismo, desempenhando papel fundamental em várias etapas do desenvolvimento.
+                  </p>
+                  <p>
+                    Integração de habilidades de ideação e engenharia de requisitos com estratégias de negócios e comunicação eficaz no time.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education Column -->
+        <div class="space-y-10">
+          <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-10 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-16 after:h-1 after:bg-gh-accent">
+            Formação
+          </h2>
+
+          <div class="relative pl-6 border-l-2 border-gh-accent/30 space-y-12">
+            <!-- Timeline Item -->
+            <div class="relative group">
+              <!-- Timeline Dot -->
+              <div class="absolute -left-[31px] top-1.5 w-4.5 h-4.5 rounded-full bg-gh-accent border-4 border-gray-50 dark:border-[#161b22] group-hover:scale-110 transition-transform duration-200"></div>
+              
+              <div class="space-y-2">
+                <span class="text-xs font-semibold text-gh-text-muted bg-gray-200/60 dark:bg-slate-800/80 px-2.5 py-0.5 rounded-full">
+                  Agosto de 2022 - Agosto de 2026
+                </span>
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white pt-1">
+                  Bacharelado em Ciência da Computação
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-slate-400 leading-relaxed">
+                  UNIFOR - Universidade de Fortaleza, Fortaleza, Brasil
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 bg-white dark:bg-[#0f172a] transition-colors duration-300">
+    <div class="max-w-5xl mx-auto px-6">
+      <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-12 relative inline-block after:content-[''] after:absolute after:bottom-[-8px] after:left-0 after:w-16 after:h-1 after:bg-gh-accent">
+        Projetos
+      </h2>
+
+      <!-- Projects Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4">
+        {projects.map(p => (
+          <div class="group bg-white dark:bg-[#1e293b] border border-gray-100 dark:border-slate-800 rounded-2xl shadow-sm hover:shadow-xl hover:-translate-y-2 transition-all duration-300 flex flex-col justify-between overflow-hidden">
+            <div>
+              <!-- Project Header Graphic -->
+              <div class={`h-40 bg-gradient-to-br ${p.gradient} flex items-center justify-center relative overflow-hidden`}>
+                <div class="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Briefcase class="w-12 h-12 text-gh-accent transition-transform duration-300 group-hover:scale-110" />
+              </div>
+
+              <!-- Content -->
+              <div class="p-6 space-y-4">
+                <h3 class="text-xl font-bold text-gray-900 dark:text-white group-hover:text-gh-accent transition-colors">
+                  {p.name}
+                </h3>
+                <p class="text-sm text-gray-600 dark:text-slate-400 leading-relaxed line-clamp-3">
+                  {p.description}
+                </p>
+                
+                <!-- Tech Tags -->
+                <div class="flex flex-wrap gap-2 pt-2">
+                  {p.tech.map(t => (
+                    <span class="px-2.5 py-0.5 bg-gray-100 dark:bg-slate-800 text-xs font-semibold text-gray-600 dark:text-slate-300 rounded-full border border-gray-200/50 dark:border-slate-700/50">
+                      {t}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            <!-- Action Link -->
+            <div class="px-6 pb-6 pt-2">
+              <a
+                href={p.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center space-x-1.5 text-sm font-bold text-gh-accent hover:text-gh-accent-hover hover:underline"
+              >
+                <span>Ver no GitHub</span>
+                <ExternalLink class="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Color Switcher Panel -->
+  <ThemePanel />
+
+  <!-- Footnote rodapé -->
+  <Footer />
+
+</BaseLayout>

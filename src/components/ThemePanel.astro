@@ -1,0 +1,206 @@
+---
+import { Palette, Sun, Moon } from 'lucide-astro';
+---
+
+<!-- Theme Switcher Widget -->
+<div class="theme-panel fixed bottom-6 right-6 z-50 flex flex-col items-end" id="themePanel">
+  
+  <!-- Theme Panel Content (Dropdown) -->
+  <div class="theme-panel-content mb-4 w-[240px] bg-gh-card border border-gh-border rounded-xl shadow-xl p-4 transition-all duration-300 origin-bottom-right scale-90 opacity-0 pointer-events-none">
+    
+    <h4 class="text-xs font-bold text-gh-text uppercase tracking-wider mb-2.5">
+      Aparência
+    </h4>
+    
+    <div class="flex gap-2 mb-4">
+      <button
+        class="theme-btn flex-1 py-1.5 px-2.5 border border-gh-border rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-colors duration-150 text-gh-text-muted hover:bg-gh-bg-secondary"
+        id="lightThemeBtn"
+        title="Modo Claro"
+      >
+        <Sun class="w-3.5 h-3.5" />
+        <span>Claro</span>
+      </button>
+      <button
+        class="theme-btn flex-1 py-1.5 px-2.5 border border-gh-border rounded-md text-xs font-semibold flex items-center justify-center gap-1.5 cursor-pointer transition-colors duration-150 text-gh-text-muted hover:bg-gh-bg-secondary"
+        id="darkThemeBtn"
+        title="Modo Escuro"
+      >
+        <Moon class="w-3.5 h-3.5" />
+        <span>Escuro</span>
+      </button>
+    </div>
+
+    <h4 class="text-xs font-bold text-gh-text uppercase tracking-wider mb-2.5">
+      Paleta de Cores
+    </h4>
+    
+    <div class="palette-options flex gap-2 flex-wrap">
+      <button
+        class="palette-btn w-7 h-7 rounded-full border-2 border-transparent hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+        data-palette="blue"
+        style="background-color: #0969da;"
+        title="Azul"
+      ></button>
+      <button
+        class="palette-btn w-7 h-7 rounded-full border-2 border-transparent hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+        data-palette="emerald"
+        style="background-color: #10b981;"
+        title="Esmeralda"
+      ></button>
+      <button
+        class="palette-btn w-7 h-7 rounded-full border-2 border-transparent hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+        data-palette="violet"
+        style="background-color: #8b5cf6;"
+        title="Violeta"
+      ></button>
+      <button
+        class="palette-btn w-7 h-7 rounded-full border-2 border-transparent hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+        data-palette="amber"
+        style="background-color: #f59e0b;"
+        title="Âmbar"
+      ></button>
+      <button
+        class="palette-btn w-7 h-7 rounded-full border-2 border-transparent hover:scale-110 active:scale-95 transition-all duration-150 cursor-pointer"
+        data-palette="rose"
+        style="background-color: #f43f5e;"
+        title="Rosa"
+      ></button>
+    </div>
+
+  </div>
+
+  <!-- Toggle Button -->
+  <button
+    class="theme-panel-toggle w-12 h-12 rounded-full bg-gh-accent hover:bg-gh-accent-hover text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all duration-150 cursor-pointer focus:outline-none"
+    id="themePanelToggle"
+    aria-label="Personalizar tema"
+  >
+    <Palette class="w-5 h-5" />
+  </button>
+
+</div>
+
+<style>
+  /* Local Scoped styles for theme switcher transitions */
+  .theme-panel.active .theme-panel-content {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    pointer-events: auto;
+  }
+  
+  /* Styling for active theme buttons */
+  .theme-btn.active-theme {
+    background-color: var(--color-accent);
+    color: #ffffff;
+    border-color: var(--color-accent);
+  }
+  .theme-btn.active-theme:hover {
+    background-color: var(--color-accent-hover);
+  }
+
+  /* Styling for active palette button */
+  .palette-btn.active-palette {
+    border-color: var(--text-primary);
+    transform: scale(1.1);
+  }
+</style>
+
+<script>
+  // DOM Elements
+  const themePanel = document.getElementById('themePanel');
+  const themePanelToggle = document.getElementById('themePanelToggle');
+  const lightThemeBtn = document.getElementById('lightThemeBtn');
+  const darkThemeBtn = document.getElementById('darkThemeBtn');
+  const paletteBtns = document.querySelectorAll('.palette-btn');
+
+  // Toggle Panel open/close
+  if (themePanelToggle && themePanel) {
+    themePanelToggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      themePanel.classList.toggle('active');
+    });
+
+    // Close panel when clicking outside
+    document.addEventListener('click', (e) => {
+      if (!themePanel.contains(e.target as Node)) {
+        themePanel.classList.remove('active');
+      }
+    });
+  }
+
+  // Set active Theme button styling
+  function updateThemeButtonState(theme: string) {
+    if (theme === 'dark') {
+      darkThemeBtn?.classList.add('active-theme');
+      lightThemeBtn?.classList.remove('active-theme');
+    } else {
+      lightThemeBtn?.classList.add('active-theme');
+      darkThemeBtn?.classList.remove('active-theme');
+    }
+  }
+
+  // Set Theme (light/dark)
+  function setTheme(theme: string, save = true) {
+    if (theme === 'dark') {
+      document.documentElement.classList.add('dark-mode');
+      if (save) localStorage.setItem('portfolio-theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark-mode');
+      if (save) localStorage.setItem('portfolio-theme', 'light');
+    }
+    updateThemeButtonState(theme);
+  }
+
+  // Set Palette
+  function setPalette(palette: string, save = true) {
+    // Remove all classes matching theme-*
+    document.documentElement.classList.forEach(className => {
+      if (className.startsWith('theme-')) {
+        document.documentElement.classList.remove(className);
+      }
+    });
+
+    document.documentElement.classList.add(`theme-${palette}`);
+
+    // Update active button state
+    paletteBtns.forEach(btn => {
+      if (btn.getAttribute('data-palette') === palette) {
+        btn.classList.add('active-palette');
+      } else {
+        btn.classList.remove('active-palette');
+      }
+    });
+
+    if (save) localStorage.setItem('portfolio-palette', palette);
+  }
+
+  // Setup Event Listeners
+  if (lightThemeBtn) {
+    lightThemeBtn.addEventListener('click', () => setTheme('light', true));
+  }
+  if (darkThemeBtn) {
+    darkThemeBtn.addEventListener('click', () => setTheme('dark', true));
+  }
+
+  paletteBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const palette = btn.getAttribute('data-palette');
+      if (palette) {
+        setPalette(palette, true);
+      }
+    });
+  });
+
+  // Sync initial UI state with BaseLayout initialization
+  const initialTheme = document.documentElement.classList.contains('dark-mode') ? 'dark' : 'light';
+  updateThemeButtonState(initialTheme);
+
+  let initialPalette = 'blue';
+  document.documentElement.classList.forEach(className => {
+    if (className.startsWith('theme-')) {
+      initialPalette = className.replace('theme-', '');
+    }
+  });
+  setPalette(initialPalette, false);
+</script>

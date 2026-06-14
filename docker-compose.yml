@@ -1,0 +1,17 @@
+services:
+  astro:
+    image: node:22
+    container_name: astro-dev
+
+    working_dir: /workspace
+
+    volumes:
+      - .:/workspace
+
+    ports:
+      - "4321:4321"
+
+    stdin_open: true
+    tty: true
+
+    command: bash

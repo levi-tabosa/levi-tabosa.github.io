@@ -1,0 +1,170 @@
+---
+// Header.astro - Translucent navbar with scroll-spy active indicators and mobile menu
+---
+
+<header class="fixed top-0 left-0 w-full z-40 bg-white/85 dark:bg-[#0f172a]/85 backdrop-blur-md border-b border-gray-200/80 dark:border-slate-800/80 text-gray-700 dark:text-slate-200 shadow-sm transition-all duration-300">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    
+    <!-- Logo -->
+    <a href="#home" class="logo text-xl font-bold text-gray-900 dark:text-white tracking-tight hover:text-gh-accent transition-colors">
+      Levi Tabosa
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex items-center space-x-8">
+      <ul class="flex space-x-8 text-sm font-semibold text-gray-600 dark:text-slate-300">
+        <li>
+          <a href="#home" class="nav-link relative py-1 hover:text-gh-accent transition-colors active-link">Início</a>
+        </li>
+        <li>
+          <a href="#about" class="nav-link relative py-1 hover:text-gh-accent transition-colors">Sobre</a>
+        </li>
+        <li>
+          <a href="#experience" class="nav-link relative py-1 hover:text-gh-accent transition-colors">Experiência</a>
+        </li>
+        <li>
+          <a href="#projects" class="nav-link relative py-1 hover:text-gh-accent transition-colors">Projetos</a>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Mobile Menu Toggle Button -->
+    <button
+      id="hamburger"
+      class="md:hidden flex flex-col justify-between w-6 h-4.5 cursor-pointer focus:outline-none"
+      aria-label="Abrir Menu"
+    >
+      <span class="bar w-full h-[3px] bg-gray-600 dark:bg-slate-300 rounded-sm transition-all duration-300 origin-left"></span>
+      <span class="bar w-full h-[3px] bg-gray-600 dark:bg-slate-300 rounded-sm transition-all duration-300"></span>
+      <span class="bar w-full h-[3px] bg-gray-600 dark:bg-slate-300 rounded-sm transition-all duration-300 origin-left"></span>
+    </button>
+
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div
+    id="mobile-nav"
+    class="md:hidden absolute top-[57px] left-[-100%] w-full h-[calc(100vh-57px)] bg-white dark:bg-[#0f172a] border-t border-gray-100 dark:border-slate-800 transition-all duration-300 ease-in-out flex flex-col items-center justify-start py-12 px-6"
+  >
+    <ul class="flex flex-col space-y-6 text-center text-lg font-semibold text-gray-700 dark:text-slate-200 w-full">
+      <li>
+        <a href="#home" class="mobile-nav-link block py-2 hover:text-gh-accent transition-colors">Início</a>
+      </li>
+      <li>
+        <a href="#about" class="mobile-nav-link block py-2 hover:text-gh-accent transition-colors">Sobre</a>
+      </li>
+      <li>
+        <a href="#experience" class="mobile-nav-link block py-2 hover:text-gh-accent transition-colors">Experiência</a>
+      </li>
+      <li>
+        <a href="#projects" class="mobile-nav-link block py-2 hover:text-gh-accent transition-colors">Projetos</a>
+      </li>
+    </ul>
+  </div>
+</header>
+
+<style>
+  /* Underline indicator on active nav-link */
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2.5px;
+    background-color: var(--color-accent);
+    transition: width 0.3s ease;
+  }
+  .nav-link:hover::after,
+  .nav-link.active-link::after {
+    width: 100%;
+  }
+  .nav-link.active-link {
+    color: var(--color-accent);
+  }
+
+  /* Hamburger Active Animation */
+  #hamburger.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(2px, 2px);
+  }
+  #hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+    transform: scale(0);
+  }
+  #hamburger.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(2px, -2px);
+  }
+</style>
+
+<script>
+  // Mobile Hamburger Toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobile-nav');
+  const mobileLinks = document.querySelectorAll('.mobile-nav-link');
+
+  if (hamburger && mobileNav) {
+    const toggleMenu = () => {
+      hamburger.classList.toggle('active');
+      const isOpen = hamburger.classList.contains('active');
+      mobileNav.style.left = isOpen ? '0' : '-100%';
+    };
+
+    hamburger.addEventListener('click', toggleMenu);
+
+    // Close menu when clicking mobile links
+    mobileLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        if (hamburger.classList.contains('active')) {
+          toggleMenu();
+        }
+      });
+    });
+  }
+
+  // Smooth Scroll offset adjustment
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const href = this.getAttribute('href');
+      if (!href) return;
+      
+      const target = document.querySelector(href);
+      if (target) {
+        const offset = 65; // height of fixed header + safety margin
+        const targetPosition = target.getBoundingClientRect().top + window.scrollY - offset;
+        
+        window.scrollTo({
+          top: targetPosition,
+          behavior: 'smooth'
+        });
+      }
+    });
+  });
+
+  // Scroll Spy to set active link
+  const sections = document.querySelectorAll('section, header');
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  window.addEventListener('scroll', () => {
+    let currentId = '';
+    const scrollPosition = window.scrollY + 100; // Offset for detection
+
+    sections.forEach(section => {
+      const sectionTop = (section as HTMLElement).offsetTop;
+      const sectionHeight = (section as HTMLElement).offsetHeight;
+      const id = section.getAttribute('id');
+      
+      if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight && id) {
+        currentId = id;
+      }
+    });
+
+    navLinks.forEach(link => {
+      link.classList.remove('active-link');
+      const href = link.getAttribute('href');
+      if (href === `#${currentId}`) {
+        link.classList.add('active-link');
+      }
+    });
+  });
+</script>

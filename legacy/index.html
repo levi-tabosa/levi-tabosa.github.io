@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Levi Tabosa Costa e Silva - Portifólio</title>
+   <link rel="stylesheet" href="styles.css">
+   <script>
+      (function() {
+         const savedTheme = localStorage.getItem('portfolio-theme');
+         const savedPalette = localStorage.getItem('portfolio-palette') || 'blue';
+         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+         
+         const theme = savedTheme || (prefersDark ? 'dark' : 'light');
+         
+         if (theme === 'dark') {
+            document.documentElement.classList.add('dark-mode');
+         }
+         document.documentElement.classList.add('theme-' + savedPalette);
+      })();
+   </script>
+   <!-- Google Fonts -->
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+   <!-- Header -->
+   <header>
+      <div class="container">
+         <nav>
+            <div class="logo">Levi Tabosa</div>
+            <ul class="nav-links">
+               <li><a href="#home">Início</a></li>
+               <li><a href="#about">Sobre</a></li>
+               <li><a href="#experience">Experiência</a></li>
+               <li><a href="#projects">Projetos</a></li>
+            </ul>
+            <div class="hamburger">
+               <div class="bar"></div>
+               <div class="bar"></div>
+               <div class="bar"></div>
+            </div>
+         </nav>
+      </div>
+   </header>
+
+   <!-- Hero Section -->
+   <section id="home" class="hero">
+      <div class="container">
+         <div class="hero-content">
+            <h1>Desenvolvedor web · Engenheiro de software</h1>
+            <p>Estudante de Ciência da Computação e Entusiasta de Startups</p>
+            <a href="#about" class="btn">Entre em Contato</a>
+         </div>
+      </div>
+   </section>
+
+   <!-- About Section -->
+   <section id="about" class="section">
+      <div class="container">
+         <h2 class="section-title">Sobre Mim</h2>
+         <div class="about-content">
+            <div class="about-img">
+               <img src="images/pic.png" alt="Levi Tabosa">
+            </div>
+            <div class="about-text">
+               <p class="mb-20">
+                  Estudante empenhado de Ciência da Computação, com vivência em projetos de startups, particularmente na
+                  área de turismo.
+               </p>
+               <p class="mb-20">
+                  Tenho competência para comunicar e colaborar, sempre comprometido com a qualidade no desenvolvimento
+                  de software.
+               </p>
+               <div class="about-info">
+                  <p><strong>Nome:</strong> Levi Tabosa Costa e Silva</p>
+                  <p><strong>Localização:</strong> Fortaleza, Ceará, Brasil</p>
+                  <p><strong>Email:</strong> tabosalevicosta@gmail.com</p>
+
+                  <p><strong>Celular:</strong> +55 (85) 99702-2568</p>
+                  <p><strong>LinkedIn:</strong> <a href="https://linkedin.com/in/tabosa-levi"
+                        target="_blank">linkedin.com/in/tabosa-levi</a></p>
+                  <p><strong>GitHub:</strong> <a href="https://github.com/levi-tabosa"
+                        target="_blank">github.com/levi-tabosa</a></p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Experience Section -->
+   <section id="experience" class="section">
+      <div class="container">
+         <h2 class="section-title">Experiência</h2>
+         <div class="timeline">
+            <div class="timeline-item">
+               <div class="timeline-date">Agosto 2023 - Março 2024</div>
+               <h3 class="timeline-title">Participante de Projeto de Startup - NavTour</h3>
+               <p>Participação ativa em um projeto de startup no setor de turismo, desempenhando papel fundamental em
+                  várias etapas do desenvolvimento.</p>
+               <p>Integração de habilidades de ideação e engenharia de requisitos com estratégias de negócios e
+                  comunicação eficaz.</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Education Section -->
+   <section id="education" class="section">
+      <div class="container">
+         <h2 class="section-title">Formação</h2>
+         <div class="timeline">
+            <div class="timeline-item">
+               <div class="timeline-date">Agosto de 2022 - Agosto de 2026</div>
+               <h3 class="timeline-title">Bacharelado em Ciência da Computação</h3>
+               <p>UNIFOR - Universidade de Fortaleza, Fortaleza, Brasil</p>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Projects Section -->
+   <section id="projects" class="section">
+      <div class="container">
+         <h2 class="section-title">Projetos</h2>
+         <div class="projects-grid">
+            <div class="project-card">
+               <div class="project-img" style="background-image: url('images/');"></div>
+               <div class="project-content">
+                  <h3 class="project-title">NavTour</h3>
+                  <p>Projeto de startup no setor de turismo focado em melhorar a experiência de navegação para turistas.
+                  </p>
+                  <div class="project-tech">
+                     <span class="tech-tag">Flutter</span>
+                     <span class="tech-tag">Dart</span>
+                     <span class="tech-tag">Firebase</span>
+                  </div>
+                  <p>
+                     <a href="https://github.com/" target="_blank">github.com/</a>
+                  </p>
+               </div>
+            </div>
+            <div class="project-card">
+               <div class="project-img" style="background-image: url('images/');"></div>
+               <div class="project-content">
+                  <h3 class="project-title">TechGreen</h3>
+                  <p>
+                     Projeto acadêmico piloto de um E-commerce com tema ambientalista
+                  </p>
+                  <div class="project-tech">
+                     <span class="tech-tag">Node.js</span>
+                     <span class="tech-tag">Express</span>
+                     <span class="tech-tag">MongoDB</span>
+                  </div>
+                  <p>
+                     <a href="https://github.com/d3vluz/TechGreen" target="_blank">github.com/d3vluz/TechGreen</a>
+                  </p>
+               </div>
+            </div>
+            <div class="project-card">
+               <div class="project-img" style="background-image: url('images/');"></div>
+               <div class="project-content">
+                  <h3 class="project-title">Portfólio de Desenvolvimento Web</h3>
+                  <p>Coleção de projetos de desenvolvimento web mostrando habilidades em HTML, CSS e JavaScript.</p>
+                  <div class="project-tech">
+                     <span class="tech-tag">HTML5</span>
+                     <span class="tech-tag">CSS</span>
+                     <span class="tech-tag">JavaScript</span>
+                  </div>
+                  <p>
+                     <a href="https://github.com/" target="_blank">github.com/levi-tabosa/levitabosa</a>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+   </section>
+
+   <!-- Footer -->
+   <footer>
+      <div class="container">
+         <div class="social-links">
+            <a href="https://linkedin.com/in/tabosa-levi" target="_blank">
+               <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/levi-tabosa" target="_blank">
+               <i class="fab fa-github"></i>
+            </a>
+            <a href="mailto:tabosalevicosta@gmail.com">
+               <i class="fas fa-envelope"></i>
+            </a>
+         </div>
+         <p>&copy; 2025 Levi Tabosa Costa e Silva. Todos os direitos reservados.</p>
+      </div>
+   </footer>
+
+    <!-- Theme Switcher Widget -->
+    <div class="theme-panel" id="themePanel">
+       <button class="theme-panel-toggle" id="themePanelToggle" aria-label="Personalizar tema">
+          <i class="fas fa-palette"></i>
+       </button>
+       <div class="theme-panel-content">
+          <h4>Tema</h4>
+          <div class="theme-toggle-container">
+             <button class="theme-btn active" id="lightThemeBtn" title="Modo Claro">
+                <i class="fas fa-sun"></i> Claro
+             </button>
+             <button class="theme-btn" id="darkThemeBtn" title="Modo Escuro">
+                <i class="fas fa-moon"></i> Escuro
+             </button>
+          </div>
+          <h4>Paleta</h4>
+          <div class="palette-options">
+             <button class="palette-btn active" data-palette="blue" style="background-color: #2563eb;" title="Azul"></button>
+             <button class="palette-btn" data-palette="emerald" style="background-color: #10b981;" title="Esmeralda"></button>
+             <button class="palette-btn" data-palette="violet" style="background-color: #8b5cf6;" title="Violeta"></button>
+             <button class="palette-btn" data-palette="amber" style="background-color: #f59e0b;" title="Âmbar"></button>
+             <button class="palette-btn" data-palette="rose" style="background-color: #f43f5e;" title="Rosa"></button>
+          </div>
+       </div>
+    </div>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
