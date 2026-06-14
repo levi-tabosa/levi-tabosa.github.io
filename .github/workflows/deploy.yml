@@ -3,7 +3,7 @@ name: Deploy Astro
 on:
   push:
     branches:
-      - main
+      - master
 
 permissions:
   contents: read
@@ -22,6 +22,7 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+          cache: npm
 
       - run: npm ci
 
